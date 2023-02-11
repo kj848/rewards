@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Add Reward {% endblock %}
+{% block title %} Update Reward {% endblock %}
 {% block body %}
 
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -13,46 +13,34 @@
   {% endif %}
 {% endwith %}
 
-<style>
-
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-</style>
-
-<h1>Add rewards</h1>
+<h1>Update rewards</h1>
 <!--Add reward form-->
-<form action="" method="post">
+<form action="/update_rewards/{{update.id}}" method="post">
 <!-- CSRF token protect the form against CSRF attacks -->
 {{ form.hidden_tag() }}
-
+<!--form stuff-->
 {{ form.name.label(class="form-label") }}
-{{ form.name(class="form-control") }} <br>
+{{ form.name(class="form-control",
+    value=update.name) }} <br>
 
 {{ form.price.label(class="form-label") }}
-{{ form.price(class="form-control") }} <br>
+{{ form.price(class="form-control",
+    value=update.price) }} <br>
 
 {{ form.quantity.label(class="form-label") }}
-{{ form.quantity(class="form-control") }} <br>
+{{ form.quantity(class="form-control",
+    value=update.quantity) }} <br>
 
 {{ form.category.label(class="form-label") }}
-{{ form.category(class="form-control") }} <br>
+{{ form.category(class="form-control",
+    value=update.category) }} <br>
 <br>
-<a class="btn btn-secondary" href="/manage_rewards">Back</a>
-{{ form.submit(class="btn-btn-secondary", value="Add") }}
+    <a class="btn btn-secondary" href="/manage_rewards">Back</a>
+{{ form.submit(class="btn-btn-secondary", value="Update") }}
 </form>
 
-
+<!--{% for ourreward in ourrewards %}-->
+<!--{{ourreward.id}}-{{ourreward.name}}-{{ourreward.price}}-{{ourreward.quantity}}-{{ourreward.category}} <br>-->
+<!--{% endfor %}-->
 
 {% endblock %}
