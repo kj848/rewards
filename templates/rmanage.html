@@ -15,30 +15,35 @@
 
 <!--<a href="/add_rewards">Add rewards</a>-->
 <br>
-<div class="container">
+<div class="container-xl">
     <div class="row">
-        <div class="col md-12">
-            <div class="jumbotron p-3">
+        <div class="col-xl-12">
+            <div class="jumbotron p-2">
                 <h2>Manage Rewards<a class="btn btn-success float-right" href="/add_rewards">Add New Rewards</a></h2>
 
 <table class="table table-hover table-dark">
 <tr>
+    <th>IMAGE</th>
     <th>NAME</th>
     <th>PRICE</th>
     <th>QUANTITY</th>
     <th>CATEGORY</th>
+    <th>DATE</th>
     <th>ACTION</th>
 </tr>
 
 {% for ourreward in ourrewards %}
 <tr>
+    <td><img class="img-fluid" src="{{ url_for('static',filename='uploads/' + ourreward.rewardpic) }}" alt="Card image cap" style="width: auto; height: 70px;">
+</td>
     <td>{{ourreward.name}}</td>
     <td>{{ourreward.price}} points</td>
     <td>{{ourreward.quantity}}</td>
     <td>{{ourreward.category}}</td>
+    <td>{{ourreward.date_added}}</td>
     <td>
 <a class="btn btn-warning" href="{{url_for('updaterewards',id=ourreward.id)}}">Update</a>
-<a class="btn btn-danger" href="{{url_for('deleterewards',id=ourreward.id)}}">Delete</a><br>
+<a class="btn btn-danger" href="{{url_for('deleterewards',id=ourreward.id)}}" onclick="return confirm ('Are you sure you want to Delete?')">Delete</a><br>
 
     </td>
 </tr>
